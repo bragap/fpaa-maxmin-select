@@ -130,56 +130,38 @@ def main():
 ### Counting Comparisons per Recursion Level
 
 - **Level 0**: \(2\) comparisons.
-- **Level 1**: \(2 	imes 2 = 4\) comparisons.
-- **Level 2**: \(4 	imes 2 = 8\) comparisons.
+- **Level 1**: \(2 x 2 = 4\) comparisons.
+- **Level 2**: \(4 x 2 = 8\) comparisons.
 - **Level k**: \(2^{k+1}\) comparisons.
 
-Since the recursion depth is \(\log_2 n\), the total number of comparisons is:
+Since the recursion depth is log2 n, the total number of comparisons is:
 
-\[
+
 C(n) = 2(n - 1)
-\]
+
 
 ## 2. Asymptotic Complexity Using the Master Theorem
 
 The recurrence relation for the algorithm is:
-\[
+
 T(n) = 2T(n/2) + O(1)
-\]
 
 ### Identifying Parameters
 
-The recurrence is in the form:
-\[
-T(n) = aT(n/b) + f(n)
-\]
-
-Comparing:
 - \(a = 2\) (two recursive calls)
 - \(b = 2\) (problem size is halved in each recursion step)
 - \(f(n) = O(1)\) (constant operations per level)
 
-### Computing \( \log_b a \)
-
-\[
-p = \log_2 2 = 1
-\]
+p = log2 2 = 1
 
 ### Applying the Master Theorem
 
-The Master Theorem defines three cases for solving recurrences of the form \( T(n) = aT(n/b) + f(n) \):
-
-- **Case 1**: If \( f(n) = O(n^c) \) with \( c < p \), then \( T(n) = O(n^p) \).
-- **Case 2**: If \( f(n) = O(n^c) \) with \( c = p \), then \( T(n) = O(n^p \log n) \).
-- **Case 3**: If \( f(n) = O(n^c) \) with \( c > p \), then \( T(n) = O(f(n)) \).
-
 Here, we have:
-- \( f(n) = O(1) \), which is equivalent to \( O(n^0) \).
+-  f(n) = O(1), which is equivalent to O(n^0).
 - Since \( p = 1 \) and \( 0 < 1 \), we apply **Case 1** of the Master Theorem, resulting in:
 
-\[
 T(n) = O(n)
-\]
+
 
 ## 3. Conclusion
 
