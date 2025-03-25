@@ -109,6 +109,82 @@ def main():
 - Runs `main()` when the script is executed.
 
 
+
+# Complexity Analysis of MaxMin Select
+
+## 1. Asymptotic Complexity Analysis Using Operation Counting
+
+### Comparison Counting
+
+1. **Base Case**: If there is only one element in the array, no comparisons are needed.
+   - **Comparisons**: **0**.
+
+2. **Two Elements Case**: If there are exactly two elements, one comparison determines the minimum and maximum.
+   - **Comparisons**: **1**.
+
+3. **General Case** (More than two elements): The array is divided into two halves, and two recursive calls are made to find the min and max in each half. After recursion, two comparisons are made to merge the results:
+   - One to find the overall minimum: **min(min1, min2)**
+   - One to find the overall maximum: **max(max1, max2)**
+   - **Comparisons**: **2** per recursion level.
+
+### Counting Comparisons per Recursion Level
+
+- **Level 0**: \(2\) comparisons.
+- **Level 1**: \(2 	imes 2 = 4\) comparisons.
+- **Level 2**: \(4 	imes 2 = 8\) comparisons.
+- **Level k**: \(2^{k+1}\) comparisons.
+
+Since the recursion depth is \(\log_2 n\), the total number of comparisons is:
+
+\[
+C(n) = 2(n - 1)
+\]
+
+## 2. Asymptotic Complexity Using the Master Theorem
+
+The recurrence relation for the algorithm is:
+\[
+T(n) = 2T(n/2) + O(1)
+\]
+
+### Identifying Parameters
+
+The recurrence is in the form:
+\[
+T(n) = aT(n/b) + f(n)
+\]
+
+Comparing:
+- \(a = 2\) (two recursive calls)
+- \(b = 2\) (problem size is halved in each recursion step)
+- \(f(n) = O(1)\) (constant operations per level)
+
+### Computing \( \log_b a \)
+
+\[
+p = \log_2 2 = 1
+\]
+
+### Applying the Master Theorem
+
+The Master Theorem defines three cases for solving recurrences of the form \( T(n) = aT(n/b) + f(n) \):
+
+- **Case 1**: If \( f(n) = O(n^c) \) with \( c < p \), then \( T(n) = O(n^p) \).
+- **Case 2**: If \( f(n) = O(n^c) \) with \( c = p \), then \( T(n) = O(n^p \log n) \).
+- **Case 3**: If \( f(n) = O(n^c) \) with \( c > p \), then \( T(n) = O(f(n)) \).
+
+Here, we have:
+- \( f(n) = O(1) \), which is equivalent to \( O(n^0) \).
+- Since \( p = 1 \) and \( 0 < 1 \), we apply **Case 1** of the Master Theorem, resulting in:
+
+\[
+T(n) = O(n)
+\]
+
+## 3. Conclusion
+
+Both the operation counting method and the Master Theorem indicate that the asymptotic complexity of the algorithm is **O(n)**. This means that the number of operations grows linearly with the input size, making the algorithm efficient for finding the minimum and maximum values in an array.
+
 # References
 
 Understanding more about Divide and Conquer algorithms:
